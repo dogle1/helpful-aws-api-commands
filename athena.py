@@ -22,6 +22,7 @@ def get_query_results(query_execution_id: str, profile_name: str) -> list:
     # Retrieve the remaining data, if NextToken was returned from AWS.
     while next_token != None:
         response = athena_client.get_query_results(
+            QueryExecutionId=query_execution_id,
             NextToken=next_token
         )   
         # Append the rows from the new response to the previous rows. Ignore the first row since it houses the column names.
